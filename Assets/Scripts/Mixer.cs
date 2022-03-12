@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Mixer : MonoBehaviour
 {
+    public bool isEnemyMixer;
+    public Mixer opponentMixer;
 
     public GameObject item1;
     public GameObject item2;
@@ -16,6 +18,7 @@ public class Mixer : MonoBehaviour
     private ItemStats itemStats1;
     private ItemStats itemStats2;
 
+
     ItemMixList itemsCatalog;
     private void Start()
     {
@@ -24,7 +27,7 @@ public class Mixer : MonoBehaviour
 
     public void craftItem()
     {
-        if (item1 != item2) { //check if items are no the same
+        if (item1 != item2) { //check AGAIN if items are no the same
             findMixedItem();
             //Animation if possible
         }
@@ -50,6 +53,28 @@ public class Mixer : MonoBehaviour
                 outPutItem = itemsCatalog.itemsListMix[i].resultItem;
                 itemMixedScore = calculateScore();
                 Instantiate(outPutItem, outPutSpawnPos.position, Quaternion.identity);
+            }
+        }
+    }
+
+    public void enemyAutoMix()
+    {
+        Debug.Log("checking if im enemy");
+        if (!isEnemyMixer)
+        {
+            Debug.Log("Iam enemy");
+            opponentMixer.item1 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item1;
+            opponentMixer.item2 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item2;
+            if(opponentMixer.item1 == opponentMixer.item2)
+            {
+                opponentMixer.enemyAutoMix();
+                //Do it again if items chosen are the same
+            }
+            else
+            {
+                opponentMixer.updateItemStats1();
+                opponentMixer.updateItemStats2();
+                opponentMixer.craftItem();
             }
         }
     }

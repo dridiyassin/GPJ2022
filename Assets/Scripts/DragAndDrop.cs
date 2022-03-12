@@ -17,9 +17,17 @@ public class DragAndDrop : MonoBehaviour
             }
             else
             {
-                mixerScript.item2 = Resources.Load<GameObject>("Prefabs/" + gameObject.name);
-                mixerScript.updateItemStats2();
-                mixerScript.craftItem();
+                
+                    mixerScript.item2 = Resources.Load<GameObject>("Prefabs/" + gameObject.name);
+
+                    mixerScript.updateItemStats2();
+                if (mixerScript.item1 != mixerScript.item2) //CHECK IF ITEMS ARE NOT THE SAME
+                {
+                    mixerScript.enemyAutoMix(); //ysir l craft mta3 l enemy 9bal bch mayaamlsh craft 9bal may3amer l Items
+                    mixerScript.craftItem();
+                }
+                
+
             }
             
         }
