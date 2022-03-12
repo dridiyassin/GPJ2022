@@ -7,6 +7,7 @@ TagManager:
   - Item
   - Holder
   - Slot
+  - Coldren
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 1703485453
+    locked: 0
+  - name: Results
+    uniqueID: 2855632805
     locked: 0

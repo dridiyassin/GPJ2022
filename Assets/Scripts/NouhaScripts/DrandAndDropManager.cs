@@ -5,13 +5,22 @@ using UnityEngine.EventSystems;
 
 public class DrandAndDropManager : MonoBehaviour
 {
-    public bool dragging , placed;
-    public Vector2 offset, originalPos;
-    public GameObject slot;
+    private bool dragging , placed;
+    private Vector2 offset, originalPos;
+    private GameObject slot;
+    Rigidbody2D gravity;
 
     private void Awake()
     {
         originalPos = transform.position;
+    }
+    private void Start()
+    {
+        gravity = gameObject.GetComponent<Rigidbody2D>();
+
+        //gravity.gravityScale = 0;
+
+        slot = GameObject.Find("Slot");
     }
 
     // Update is called once per frame
@@ -36,7 +45,10 @@ public class DrandAndDropManager : MonoBehaviour
     {
         if (placed)
         {
-            Instantiate(Resources.Load("Prefabs/Frog" ) , slot.transform.position , Quaternion.identity) ;
+            //Cursor.visible = false;
+
+          var chosenObject =   Instantiate(Resources.Load<GameObject>("PrefabsNouha/Dragable/" + this.name) , slot.transform.position , Quaternion.identity)  ;
+            chosenObject.GetComponent<Rigidbody2D>().gravityScale = 1;
             Destroy(gameObject);
 
             //instantiate fi blasa mta3 e slot
