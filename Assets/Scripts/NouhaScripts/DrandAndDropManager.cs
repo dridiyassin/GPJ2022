@@ -19,6 +19,8 @@ public class DrandAndDropManager : MonoBehaviour
     {
         if (!dragging)
             return;
+        if (placed)
+            return;
 
         var mousePosition = GetMousePos();
         transform.position = mousePosition;
@@ -34,7 +36,10 @@ public class DrandAndDropManager : MonoBehaviour
     {
         if (placed)
         {
-            transform.position = slot.transform.position;
+            Instantiate(Resources.Load("Prefabs/Frog" ) , slot.transform.position , Quaternion.identity) ;
+            Destroy(gameObject);
+
+            //instantiate fi blasa mta3 e slot
             dragging = false;
 
         }
@@ -55,6 +60,7 @@ public class DrandAndDropManager : MonoBehaviour
         if (other.gameObject.CompareTag("Slot"))
         {
             placed = true;
+
         }
         else { placed = false; }
         
