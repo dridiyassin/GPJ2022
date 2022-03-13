@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703485453
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8cd315c60579a1c46af951b70e34e6ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,7 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069788dd8dbb4ee489ddc0f202a6d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFromPrefab: 0
   mixerScript: {fileID: 0}
+  audio: {fileID: 0}
 --- !u!50 &3511349214473307553
 Rigidbody2D:
   serializedVersion: 4

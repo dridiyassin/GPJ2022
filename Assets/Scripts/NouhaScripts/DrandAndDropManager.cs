@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class DrandAndDropManager : MonoBehaviour
 {
+    public bool isFromPrefab = false;
+
     private bool dragging , placed , bowling;
     private Vector2 offset, originalPos;
     private GameObject slot;
@@ -15,15 +17,16 @@ public class DrandAndDropManager : MonoBehaviour
     private void Awake()
     {
         originalPos = transform.position;
+        
     }
     private void Start()
     {
         gravity = gameObject.GetComponent<Rigidbody2D>();
         audio = GetComponent<AudioSource>();
 
-        gravity.gravityScale = 0;
+        
 
-        slot = GameObject.Find("Slot");
+        slot = GameObject.Find("fleche");
         bowling = false;
         placed = false;
     }
@@ -52,8 +55,13 @@ public class DrandAndDropManager : MonoBehaviour
         if (placed)
         {
 
-           var chosenObject =   Instantiate(Resources.Load<GameObject>("PrefabsNouha/Dragable/" + this.name) , slot.transform.position , Quaternion.identity)  ;
+            GameObject toSpawn = Resources.Load<GameObject>("PrefabsNouha/Dragable/" + this.name);
+            GameObject chosenObject = Instantiate(toSpawn, slot.transform.position, Quaternion.identity);
+            DrandAndDropManager dAndD = chosenObject.GetComponent<DrandAndDropManager>();
+            dAndD.mixerScript = mixerScript;
+            dAndD.isFromPrefab = true;
             chosenObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+            
             gravity.gravityScale = 1;
 
             Destroy(gameObject);
@@ -86,36 +94,49 @@ public class DrandAndDropManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
 
+
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            if (!isFromPrefab)
+            {
+                placed = true;
+            }
+
+        }
         if (other.gameObject.CompareTag("Pot"))
         {
-            placed = true;
-
-           
-            if (mixerScript.item1 == null)
+            if (isFromPrefab)
             {
-                Debug.Log("aa");
-                mixerScript.item1 = Resources.Load<GameObject>("PrefabsNouha/Dragable/" + this.name);
-                mixerScript.updateItemStats1();
-                Debug.Log("aaaaa");
-              
-
-            }
-            else
-            {
-
-                mixerScript.item2 = Resources.Load<GameObject>("PrefabsNouha/Dragable/" + this.name);
-
-                mixerScript.updateItemStats2();
-                if (mixerScript.item1 != mixerScript.item2) //CHECK IF ITEMS ARE NOT THE SAME
+                if (mixerScript.item1 == null)
                 {
-                    mixerScript.enemyAutoMix(); //ysir l craft mta3 l enemy 9bal bch mayaamlsh craft 9bal may3amer l Items
-                    mixerScript.craftItem();
+                    
+                    string objName = this.name;
+                    objName = objName.Replace("(Clone)", "");
+                    mixerScript.item1 = Resources.Load<GameObject>("PrefabsNouha/Dragable/" + objName);
+                    mixerScript.updateItemStats1();
+                    Destroy(gameObject);
+
+
+                }
+                else
+                {
+                    string objName = this.name;
+                    objName = objName.Replace("(Clone)", "");
+                    mixerScript.item2 = Resources.Load<GameObject>("PrefabsNouha/Dragable/" + objName);
+
+                    mixerScript.updateItemStats2();
+                    if (mixerScript.item1 != mixerScript.item2) //CHECK IF ITEMS ARE NOT THE SAME
+                    {
+                        mixerScript.enemyAutoMix(); //ysir l craft mta3 l enemy 9bal bch mayaamlsh craft 9bal may3amer l Items
+                        mixerScript.craftItem();
+                        mixerScript.findWinner();
+                        Destroy(gameObject);
+                    }
+                    Destroy(gameObject);
                 }
 
             }
-
         }
         //else
         //{

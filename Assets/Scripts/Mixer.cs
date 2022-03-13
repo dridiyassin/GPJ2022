@@ -50,14 +50,30 @@ public class Mixer : MonoBehaviour
         {
             if((item1 == itemsCatalog.itemsListMix[i].item1 && item2 == itemsCatalog.itemsListMix[i].item2) || (item1 == itemsCatalog.itemsListMix[i].item2 && item2 == itemsCatalog.itemsListMix[i].item1))
             {
-                outPutItem = itemsCatalog.itemsListMix[i].resultItem;
+                
+                GameObject foundItem = itemsCatalog.itemsListMix[i].resultItem;
                 Cursor.visible = false;
                 itemMixedScore = calculateScore();
-                Instantiate(outPutItem, outPutSpawnPos.position, Quaternion.identity);
+                outPutItem = Instantiate(foundItem, outPutSpawnPos.position, Quaternion.identity);
+                outPutItem.GetComponent<Fight>().isEnemyMix = isEnemyMixer;
             }
         }
     }
 
+    public void findWinner()
+    {
+        if (itemMixedScore >= opponentMixer.itemMixedScore)
+        {
+
+            outPutItem.GetComponent<Fight>().isWinner = true;
+            opponentMixer.outPutItem.GetComponent<Fight>().isWinner = false;
+
+        } else
+        {
+            outPutItem.GetComponent<Fight>().isWinner = false;
+            opponentMixer.outPutItem.GetComponent<Fight>().isWinner = true;
+        }
+    }
     public void enemyAutoMix()
     {
         Debug.Log("checking if im enemy");
@@ -66,16 +82,17 @@ public class Mixer : MonoBehaviour
             Debug.Log("Iam enemy");
             opponentMixer.item1 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item1;
             opponentMixer.item2 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item2;
-            if(opponentMixer.item1 == opponentMixer.item2)
-            {
-                opponentMixer.enemyAutoMix();
-                //Do it again if items chosen are the same
-            }
-            else
+            if(opponentMixer.item1 != opponentMixer.item2)
             {
                 opponentMixer.updateItemStats1();
                 opponentMixer.updateItemStats2();
                 opponentMixer.craftItem();
+                
+                //Do it again if items chosen are the same
+            }
+            else
+            {
+                opponentMixer.enemyAutoMix();
             }
         }
     }

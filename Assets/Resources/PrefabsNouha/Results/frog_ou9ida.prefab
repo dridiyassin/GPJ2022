@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8423632548097970212}
   - component: {fileID: 1365803536632721176}
+  - component: {fileID: 4114783291058631918}
   m_Layer: 0
   m_Name: frog_ou9ida
   m_TagString: Untagged
@@ -82,3 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4114783291058631918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637566455070173752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ff6f711172fb44ba3d02609df75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fightEffect: {fileID: 2023663035130784971, guid: 956300a99f1702843bd83680074163f8, type: 3}
