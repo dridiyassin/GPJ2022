@@ -65,7 +65,7 @@ public class Fight : MonoBehaviour
     {
         if (canMoveToMiddle)
         {
-            transform.position = Vector3.Lerp(transform.position, tawla.transform.position, 1.5f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(tawla.transform.position.x, tawla.transform.position.y + 0.5f), 1.5f * Time.deltaTime);
         }
         
     }

@@ -23,6 +23,7 @@ public class Mixer : MonoBehaviour
     private void Start()
     {
         itemsCatalog = GameObject.Find("Game Manager").GetComponent<ItemMixList>();
+        Cursor.visible = true;
     }
 
     public void craftItem()
