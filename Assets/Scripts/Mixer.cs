@@ -83,8 +83,13 @@ public class Mixer : MonoBehaviour
             Debug.Log("Iam enemy");
             opponentMixer.item1 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item1;
             opponentMixer.item2 = itemsCatalog.itemsListMix[Random.Range(0, itemsCatalog.itemsListMix.Length)].item2;
-            if(opponentMixer.item1 != opponentMixer.item2)
+            EnemyChose moveItemsScript = GameObject.Find("--EnemysItems--").GetComponent<EnemyChose>();
+            moveItemsScript.item1 = opponentMixer.item1;
+            moveItemsScript.item2 = opponentMixer.item2;
+
+            if (opponentMixer.item1 != opponentMixer.item2)
             {
+                moveItemsScript.compareAndMove();
                 opponentMixer.updateItemStats1();
                 opponentMixer.updateItemStats2();
                 opponentMixer.craftItem();
@@ -93,7 +98,7 @@ public class Mixer : MonoBehaviour
             }
             else
             {
-                opponentMixer.enemyAutoMix();
+                enemyAutoMix();
             }
         }
     }

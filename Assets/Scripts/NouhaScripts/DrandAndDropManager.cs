@@ -133,6 +133,7 @@ public class DrandAndDropManager : MonoBehaviour
                         mixerScript.findWinner();
                         Destroy(gameObject);
                     }
+
                     Destroy(gameObject);
                 }
 
@@ -143,6 +144,6 @@ public class DrandAndDropManager : MonoBehaviour
         //    placed = false;
         //}
     }
-
+    
    
 }
