@@ -16,7 +16,10 @@ public class RoundSystem : MonoBehaviour
     public int maxRounds;
     private static GameObject instance;
 
-    
+    public GameObject WinPanel;
+    public GameObject LostPanel;
+
+    public GameObject items;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -34,7 +37,10 @@ public class RoundSystem : MonoBehaviour
     }
     void Start()
     {
-        
+        items.SetActive(true);
+
+        WinPanel.SetActive(false);
+        LostPanel.SetActive(false);
     }
     bool checkMatchEndedAndWinner()
     {
@@ -42,11 +48,18 @@ public class RoundSystem : MonoBehaviour
         {
             //Player wins
             Debug.Log("Player wins !");
+            WinPanel.SetActive(true);
+            items.SetActive(false);
+
             return true;
         } else if(enemyRoundWins >= maxRounds)
         {
             //Enemy WIns
             Debug.Log("Enemy Wins !");
+            LostPanel.SetActive(true);
+            items.SetActive(false);
+
+
             return true;
         }
         return false; //Match did not end
@@ -68,5 +81,11 @@ public class RoundSystem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene(0);
+
     }
 }
