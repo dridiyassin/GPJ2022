@@ -12,7 +12,7 @@ public class DrandAndDropManager : MonoBehaviour
     private GameObject slot;
     Rigidbody2D gravity;
     public Mixer mixerScript;
-    public AudioSource audio;
+     AudioSource audio;
 
     private void Awake()
     {
@@ -130,7 +130,7 @@ public class DrandAndDropManager : MonoBehaviour
                     {
                         mixerScript.enemyAutoMix(); //ysir l craft mta3 l enemy 9bal bch mayaamlsh craft 9bal may3amer l Items
                         mixerScript.craftItem();
-                        mixerScript.findWinner();
+                        //mixerScript.findWinner();
                         Destroy(gameObject);
                     }
 

@@ -19,5 +19,10 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(playGameSceneIndex);
     }
+
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
     
 }

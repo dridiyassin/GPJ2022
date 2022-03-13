@@ -18,6 +18,15 @@ public class Mixer : MonoBehaviour
     public ItemStats itemStats1;
     public ItemStats itemStats2;
 
+    public AudioSource magicAudio;
+
+    public GameObject ghta;
+    public Transform ghtaPos;
+
+    public GameObject foundItem;
+
+    public bool finishedWait = false;
+
 
     ItemMixList itemsCatalog;
     private void Start()
@@ -52,13 +61,32 @@ public class Mixer : MonoBehaviour
             if((item1 == itemsCatalog.itemsListMix[i].item1 && item2 == itemsCatalog.itemsListMix[i].item2) || (item1 == itemsCatalog.itemsListMix[i].item2 && item2 == itemsCatalog.itemsListMix[i].item1))
             {
                 
-                GameObject foundItem = itemsCatalog.itemsListMix[i].resultItem;
+                foundItem = itemsCatalog.itemsListMix[i].resultItem;
                 Cursor.visible = false;
-                itemMixedScore = calculateScore();
-                outPutItem = Instantiate(foundItem, outPutSpawnPos.position, Quaternion.identity);
-                outPutItem.GetComponent<Fight>().isEnemyMix = isEnemyMixer;
+                StartCoroutine(Result());
+                //outPutItem = foundItem;
+
+
+
+
             }
         }
+    }
+
+    IEnumerator Result() 
+    {
+        yield return new WaitForSeconds(2);
+
+        GameObject ghtaa =  Instantiate(ghta, ghtaPos.position, Quaternion.identity);
+        yield return new WaitForSeconds(4);
+        Destroy(ghtaa);
+
+        magicAudio.Play();
+        outPutItem = Instantiate(foundItem, outPutSpawnPos.position, Quaternion.identity);
+        itemMixedScore = calculateScore();
+        outPutItem.GetComponent<Fight>().isEnemyMix = isEnemyMixer;
+        findWinner();
+
     }
 
     public void findWinner()
@@ -68,12 +96,18 @@ public class Mixer : MonoBehaviour
 
             outPutItem.GetComponent<Fight>().isWinner = true;
             opponentMixer.outPutItem.GetComponent<Fight>().isWinner = false;
+            Cursor.visible = true;
 
-        } else
+
+        }
+        else
         {
             outPutItem.GetComponent<Fight>().isWinner = false;
             opponentMixer.outPutItem.GetComponent<Fight>().isWinner = true;
+            Cursor.visible = true;
+
         }
+
     }
     public void enemyAutoMix()
     {
@@ -94,7 +128,6 @@ public class Mixer : MonoBehaviour
                 opponentMixer.updateItemStats2();
                 opponentMixer.craftItem();
                 
-                //Do it again if items chosen are the same
             }
             else
             {

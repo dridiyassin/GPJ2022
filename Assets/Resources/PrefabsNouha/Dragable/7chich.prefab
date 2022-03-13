@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFromPrefab: 0
   mixerScript: {fileID: 0}
-  audio: {fileID: 0}
 --- !u!114 &7146741502647484939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,5 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScore1: 1
-  itemScore2: 2
-  itemScore3: 1
+  itemScore2: 0.8
+  itemScore3: 1.1

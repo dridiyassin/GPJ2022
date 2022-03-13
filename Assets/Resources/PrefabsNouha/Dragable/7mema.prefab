@@ -100,7 +100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFromPrefab: 0
   mixerScript: {fileID: 0}
-  audio: {fileID: 0}
 --- !u!61 &1303374236829984587
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,6 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0843a624660d24f42921532a404335e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemScore1: 0.5
-  itemScore2: 2
-  itemScore3: 1
+  itemScore1: 1.8
+  itemScore2: 1.5
+  itemScore3: 2

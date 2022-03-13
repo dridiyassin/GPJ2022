@@ -38,7 +38,6 @@ public class RoundSystem : MonoBehaviour
     void Start()
     {
         items.SetActive(true);
-
         WinPanel.SetActive(false);
         LostPanel.SetActive(false);
     }
@@ -48,16 +47,25 @@ public class RoundSystem : MonoBehaviour
         {
             //Player wins
             Debug.Log("Player wins !");
+            Cursor.visible = true;
+
             WinPanel.SetActive(true);
             items.SetActive(false);
+
+            AudioSource win = WinPanel.GetComponent<AudioSource>();
+            win.Play();
+
 
             return true;
         } else if(enemyRoundWins >= maxRounds)
         {
             //Enemy WIns
             Debug.Log("Enemy Wins !");
+            Cursor.visible = true;
             LostPanel.SetActive(true);
             items.SetActive(false);
+            AudioSource lost = LostPanel.GetComponent<AudioSource>();
+            lost.Play();
 
 
             return true;
@@ -86,6 +94,13 @@ public class RoundSystem : MonoBehaviour
     public void MenuButton()
     {
         SceneManager.LoadScene(0);
+        playerRoundWins = 0;
+        enemyRoundWins = 0;
+        LostPanel.SetActive(false);
+        items.SetActive(false);
+        playerRoundsTMPro.text = playerRoundWins.ToString();
+        enemyRoundsTMPro.text = enemyRoundWins.ToString();
+        Destroy(gameObject);
 
     }
 }
