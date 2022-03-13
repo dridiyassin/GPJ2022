@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2041887850817669951}
   - component: {fileID: 3768913163565044117}
   - component: {fileID: 3511349214473307553}
+  - component: {fileID: -5334418410282867492}
   m_Layer: 0
   m_Name: loou7a
   m_TagString: Untagged
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069788dd8dbb4ee489ddc0f202a6d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixerScript: {fileID: 0}
 --- !u!50 &3511349214473307553
 Rigidbody2D:
   serializedVersion: 4
@@ -144,3 +146,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-5334418410282867492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558511112041320867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0843a624660d24f42921532a404335e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScore1: 1
+  itemScore2: 2
+  itemScore3: 1.2

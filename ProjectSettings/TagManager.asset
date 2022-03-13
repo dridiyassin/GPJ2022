@@ -8,6 +8,8 @@ TagManager:
   - Holder
   - Slot
   - Coldren
+  - Pot
+  - Tawla
   layers:
   - Default
   - TransparentFX

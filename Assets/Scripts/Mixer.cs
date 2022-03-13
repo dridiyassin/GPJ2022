@@ -15,8 +15,8 @@ public class Mixer : MonoBehaviour
 
     public Transform outPutSpawnPos;
 
-    private ItemStats itemStats1;
-    private ItemStats itemStats2;
+    public ItemStats itemStats1;
+    public ItemStats itemStats2;
 
 
     ItemMixList itemsCatalog;
@@ -51,6 +51,7 @@ public class Mixer : MonoBehaviour
             if((item1 == itemsCatalog.itemsListMix[i].item1 && item2 == itemsCatalog.itemsListMix[i].item2) || (item1 == itemsCatalog.itemsListMix[i].item2 && item2 == itemsCatalog.itemsListMix[i].item1))
             {
                 outPutItem = itemsCatalog.itemsListMix[i].resultItem;
+                Cursor.visible = false;
                 itemMixedScore = calculateScore();
                 Instantiate(outPutItem, outPutSpawnPos.position, Quaternion.identity);
             }

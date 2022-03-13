@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1708698589970616229}
   - component: {fileID: 1708698589970616230}
   - component: {fileID: 6790709769655870036}
+  - component: {fileID: 184617220566115771}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069788dd8dbb4ee489ddc0f202a6d533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixerScript: {fileID: 0}
 --- !u!50 &6790709769655870036
 Rigidbody2D:
   serializedVersion: 4
@@ -144,3 +146,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &184617220566115771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708698589970616249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0843a624660d24f42921532a404335e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScore1: 1
+  itemScore2: 1
+  itemScore3: 1
